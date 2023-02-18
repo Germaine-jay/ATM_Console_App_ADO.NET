@@ -49,15 +49,9 @@ namespace ATM.DATA.Database
         protected virtual void Dispose(bool disposing)
         {
 
-            if (_disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                Dispose();
-            }
+            if (_disposed)return;
+            
+            if (disposing)Dispose();        
 
             _disposed = true;
         }
