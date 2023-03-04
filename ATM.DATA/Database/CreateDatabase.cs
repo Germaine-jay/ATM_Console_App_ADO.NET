@@ -15,7 +15,7 @@ namespace ATM.DATA.Database
         {
 
             bool databaseExists = false;
-            string connectionString = $"Server={servername};Database=master;Trusted_Connection=True;TrustServerCertificate=True;";
+            string connectionString = $"Server={servername};Database={dbname};Trusted_Connection=True;TrustServerCertificate=True;";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 

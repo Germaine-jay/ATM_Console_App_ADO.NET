@@ -3,33 +3,12 @@ using ATM.BLL.Interfaces.UserInterface;
 using ATM.DATA.Database;
 using Microsoft.Data.SqlClient;
 using ATM.BLL.Implementation.AdminServices;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ATM.BLL.Implementation.AtmServices;
-
+using ATM.BLL.Views;
 
 namespace ATM.BLL.Implementation.UserServices
 {
-    /*internal class UserServices
-    {
-    }*/
-
-    /*public class Signal
-    {
-        public static void SetBalance(string accountnumber, long balance)
-        {
-            using (GetBalance AminService = new GetBalance(new DatabaseContext()))
-            {
-                var Createduser = AminService.UpdateBalance(accountnumber, balance);
-                Console.WriteLine(Createduser == true ? $"Successfully Updated" : $"Not Successfully Updated");
-
-            };
-        }
-    }*/
     public class GetBalance : IUserServices
     {
         private readonly DatabaseContext _dbcontext;
@@ -40,8 +19,6 @@ namespace ATM.BLL.Implementation.UserServices
         }
         public bool UpdateBalance(string accountnumber, long balance)
         {
-            //AtmServices admin = new AtmServices(balance,accountnumber);
-
             SqlConnection sqlconn = _dbcontext.OpenConnection();
 
             string sqlquery = $"UPDATE Customer SET AccountBalance = @balance WHERE AccountNumber = @AccountNumber ";
@@ -53,14 +30,15 @@ namespace ATM.BLL.Implementation.UserServices
                 new SqlParameter
                 {
                     ParameterName = "@balance",
-                    Value = TransactionOptions.Balance,
+                    Value = AtmOperations.Balance,
                     SqlDbType = SqlDbType.Int,
                     Direction = ParameterDirection.Input,
+                    Size = 50
                 },
                  new SqlParameter
                 {
                     ParameterName = "@AccountNumber",
-                    Value = TransactionOptions.AccountNumber,
+                    Value = AtmOperations.AccountNumber,
                     SqlDbType = SqlDbType.NVarChar,
                     Direction = ParameterDirection.Input,
                     Size = 50
@@ -77,6 +55,18 @@ namespace ATM.BLL.Implementation.UserServices
             {
                 var Createduser = AminService.UpdateBalance(accountnumber, balance);
                 Console.WriteLine(Createduser == true ? $"Successfully Updated" : $"Not Successfully Updated");
+
+            };
+        }
+
+        public static void SetRecieverBalance(string accountnumber, long amount)
+        {
+            UserView.Reciever(accountnumber);
+            using (GetBalance AminService = new GetBalance(new DatabaseContext()))
+            {
+                var balance = UserView.RecieverBalance += amount;
+                var Reciever = AminService.UpdateBalance(accountnumber, balance);
+                Console.WriteLine(Reciever == true ? $"Successfully Updated" : $"Not Successfully Updated");
 
             };
         }

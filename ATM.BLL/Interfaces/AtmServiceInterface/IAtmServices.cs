@@ -8,7 +8,7 @@ namespace ATM.BLL.Interfaces.AtmServiceInterface
 {
     public interface IAtmServices
     {
-        void Transfer(long amount, DateTime date, string discription);
+        void Transfer(long amount, string account, DateTime date, string discription);
         void Withdrawal(long amount, DateTime date, string discription);
         void Deposit(long amount, DateTime date, string discription);
         void Recharge(long amount, DateTime date, string discription);

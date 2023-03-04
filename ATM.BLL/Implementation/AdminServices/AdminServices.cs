@@ -9,9 +9,6 @@ using System.Reflection;
 
 namespace ATM.BLL.Implementation.AdminServices
 {
-    /*internal class AdminServices
-    {
-    }*/
     public class AtmAdminServices : IAdminServices
     {
         private readonly DatabaseContext _dbcontext;

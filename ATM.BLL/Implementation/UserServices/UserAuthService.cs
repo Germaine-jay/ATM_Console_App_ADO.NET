@@ -7,9 +7,6 @@ using System.Data;
 
 namespace ATM.BLL.Implementation.UserServices
 {
-    internal class UserAuthService
-    {
-    }
     public class AuthCustomer : IUserAuthService
     {
         private readonly DatabaseContext _dbcontext;

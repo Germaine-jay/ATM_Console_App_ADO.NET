@@ -4,9 +4,6 @@ using System.Threading.Tasks;
 
 namespace ATM.BLL.Implementation.AtmServices
 {
-    /*public class AtmServices
-    {
-    }*/
     public class AtmServices
     {
         public static long AccountBalance { get; set; }
