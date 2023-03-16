@@ -49,19 +49,5 @@ namespace ATM.BLL.Views
             };
         }
 
-        public static void Reciever(string accountnumber)
-        {
-
-            using (IAdminServices whatsAppService = new AtmAdminServices(new DatabaseContext()))
-            {
-                var user = whatsAppService.GetUser(accountnumber);
-
-                if (user.AccountNumber == null) Console.WriteLine("Costomer does not exist");
-
-                RecieverBalance = user.AccountBalance;
-                RecieverAccount = user.AccountNumber;
-            };
-        }
-
     }
 }

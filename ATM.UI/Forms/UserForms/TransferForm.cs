@@ -1,12 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ATM.BLL.Implementation.AtmServices;
+using System;
 
 namespace ATM.UI.Forms.UserForms
 {
-    internal class TransferForm
+    public class TransferForm
     {
+        public static void Rechargeform()
+        {
+            var transactionOptions = new TransactionOptions();
+
+            Console.WriteLine("\tEnter Your Amount");
+            int amount = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("\tEnter Recipient Accountnumber");
+            string account = Console.ReadLine();
+
+            Console.WriteLine("\tEnter disciption");
+            string discription = Console.ReadLine();
+
+            transactionOptions.Transfer(amount, account, DateTime.Now, discription);
+        }
     }
 }

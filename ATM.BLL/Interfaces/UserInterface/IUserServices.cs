@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATM.DATA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace ATM.BLL.Interfaces.UserInterface
     public interface IUserServices:IDisposable
     {
         bool UpdateBalance(string accountnumber, long balance);
+        UserModelView GetUser(string accountnumber);
     }
 }

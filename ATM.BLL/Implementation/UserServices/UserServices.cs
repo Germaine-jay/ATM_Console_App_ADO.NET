@@ -6,6 +6,7 @@ using ATM.BLL.Implementation.AdminServices;
 using System.Data;
 using ATM.BLL.Implementation.AtmServices;
 using ATM.BLL.Views;
+using ATM.DATA.Models;
 
 namespace ATM.BLL.Implementation.UserServices
 {
@@ -13,6 +14,9 @@ namespace ATM.BLL.Implementation.UserServices
     {
         private readonly DatabaseContext _dbcontext;
         private bool _disposed;
+
+        UserModelView user = new UserModelView();
+
         public GetBalance(DatabaseContext dbcontext)
         {
             _dbcontext = dbcontext;
@@ -59,13 +63,49 @@ namespace ATM.BLL.Implementation.UserServices
             };
         }
 
+        public UserModelView GetUser(string accountnumber)
+        {
+            SqlConnection sqlconn = _dbcontext.OpenConnection();
+
+            string sqlquery = $"SELECT Customer.FirstName, Customer.LastName,Customer.Mobile, Customer.AccountNumber, Customer.AccountBalance FROM Customer  WHERE AccountNumber = @AccountNumber";
+
+            using SqlCommand sqlCommand = new SqlCommand(sqlquery, sqlconn);
+
+            sqlCommand.Parameters.AddRange(new SqlParameter[]
+            {
+                new SqlParameter
+                {
+                    ParameterName = "@AccountNumber",
+                    Value = accountnumber,
+                    SqlDbType = SqlDbType.NVarChar,
+                    Direction = ParameterDirection.Input,
+                    Size = 50
+                }
+            });
+
+            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            {
+                while (dataReader.Read())
+                {
+
+                    user.FirstName = dataReader["FirstName"].ToString();
+                    user.LastName = dataReader["LastName"].ToString();
+                    user.PhoneNumber = dataReader["Mobile"].ToString();
+                    user.AccountNumber = dataReader["AccountNumber"].ToString();
+                    user.AccountBalance = Convert.ToInt64(dataReader["AccountBalance"]);
+                }
+            }
+            return user;
+        }
+
         public static void SetRecieverBalance(string accountnumber, long amount)
         {
-            UserView.Reciever(accountnumber);
-            using (GetBalance AminService = new GetBalance(new DatabaseContext()))
+            using (GetBalance recieverService = new GetBalance(new DatabaseContext()))
             {
-                var balance = UserView.RecieverBalance += amount;
-                var Reciever = AminService.UpdateBalance(accountnumber, balance);
+                var reciever = recieverService.GetUser(accountnumber);
+
+                var balance = reciever.AccountBalance += amount;
+                var Reciever = recieverService.UpdateBalance(accountnumber, balance);
                 Console.WriteLine(Reciever == true ? $"Successfully Updated" : $"Not Successfully Updated");
 
             };

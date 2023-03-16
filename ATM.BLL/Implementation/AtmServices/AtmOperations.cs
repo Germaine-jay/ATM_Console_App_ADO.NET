@@ -35,7 +35,7 @@ namespace ATM.BLL.Implementation.AtmServices
             {
                var balance = AccountBalance - amount;
 
-                alance = balance;
+                Balance = balance;
                 GetBalance.SetBalance(AccountNumber, balance);
 
                 var Transac = new Transaction(-amount, date, type, discription);

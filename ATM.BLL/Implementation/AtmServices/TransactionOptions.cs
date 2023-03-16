@@ -1,7 +1,4 @@
 ﻿using ATM.BLL.Interfaces;
-
-using Transaction = ATM.DATA.Models.Transaction;
-using ATM.BLL.Implementation.UserServices;
 using ATM.BLL.Interfaces.AtmServiceInterface;
 
 namespace ATM.BLL.Implementation.AtmServices

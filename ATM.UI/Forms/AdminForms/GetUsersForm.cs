@@ -8,7 +8,6 @@ namespace ATM.UI.Forms.AdminForms
         public static void getAllCustomerForm()
         {
             AdminView.GetAllCustomers();
-        }
-        
+        }       
     }
 }
