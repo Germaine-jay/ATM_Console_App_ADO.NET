@@ -24,8 +24,16 @@ namespace ATM.UI.Forms.AdminForms
             Console.WriteLine("\tEnter PhoneNumber");
             long accountbalance = long.Parse(Console.ReadLine());
 
-            AdminView.CreateNewUser(firstname, lastname, phonenumber, accountpin, accountbalance);
-            
+            if(accountbalance != 0 )
+            {
+                Console.WriteLine("Account balance should not be #0 for a strart");
+            }
+            if (accountpin != "0000")
+            {
+                Console.WriteLine("Account pin should not be for a start");
+            }
+
+            AdminView.CreateNewUser(firstname, lastname, phonenumber, accountpin, accountbalance);          
                
             }
         }

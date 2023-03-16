@@ -8,7 +8,7 @@ namespace ATM.BLL.Interfaces.AtmServiceInterface
 {
     public interface IAtmOperations
     {
-        string TrasationOperation(long amount, string discription, string type, DateTime date);
-        string TransferTrasationOperation(long amount, string account, string discription, string type, DateTime date);
+        void TrasationOperation(long amount, string discription, string type, DateTime date);
+        void TransferTrasationOperation(long amount, string account, string discription, string type, DateTime date);
     }
 }

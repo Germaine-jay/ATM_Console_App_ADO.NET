@@ -15,79 +15,86 @@ namespace ATM.BLL.Implementation.AtmServices
 
         protected static List<Transaction> AllTransactions = new List<Transaction>();
 
-        public string TrasationOperation(long amount, string discription, string type, DateTime date)
+        public void TrasationOperation(long amount, string discription, string type, DateTime date)
         {
             var limit = 1000000;
-            if (amount <= 1 )
+            if (amount <= 1)
             {
-                return "Inalid Amount: Amount must be greater than #1";
+                Console.WriteLine("Inalid Amount: Amount must be greater than zero");
             }
-            else if (AccountBalance - amount <= 1)
+            if (AccountBalance - amount <= 1)
             {
-                return "Unable to compplete Transation: Your balance is low";
+                Console.WriteLine("Unable to compplete Transation: Your balance is low");
             }
             else if (amount > limit)
             {
-                return "Unable to compplete Transation: amount must not be more than a million";
+                Console.WriteLine("Unable to compplete Transation: amount must not be more than a million");
             }
-
             else
             {
                var balance = AccountBalance - amount;
 
                 Balance = balance;
-                GetBalance.SetBalance(AccountNumber, balance);
+                var output = GetBalance.SetBalance(AccountNumber, balance);
+                if(output == "Successfully Updated")
+                {
+                    var Transac = new Transaction(-amount, date, type, discription);
+                    AllTransactions.Add(Transac);
 
-                var Transac = new Transaction(-amount, date, type, discription);
-                AllTransactions.Add(Transac);
+                    Console.WriteLine( $"{discription} of #{amount} Successful");
+                }
+                Console.WriteLine( $"{discription} of #{amount} Unsuccessful");
 
-                return $"{discription} of #{amount} Successful";
             }
         }
 
-        public string DepositTrasationOperation(long amount, string discription, string type, DateTime date)
+        public void DepositTrasationOperation(long amount, string discription, string type, DateTime date)
         {
             var limit = 1000000;
             if (amount <= 1)
             {
-                return "Inalid Amount: Amount must be greater than #1";
+                Console.WriteLine("Inalid Amount: Amount must be greater than zero");
             }
-            else if (AccountBalance - amount <= 1)
+            if (AccountBalance - amount <= 1)
             {
-                return "Unable to compplete Transation: Your balance is low";
+                Console.WriteLine("Unable to compplete Transation: Your balance is low");
             }
             else if (amount > limit)
             {
-                return "Unable to compplete Transation: amount must not be more than a million";
+                Console.WriteLine("Unable to compplete Transation: amount must not be more than a million");
             }
 
             else
             {
                 var balance = AccountBalance + amount;
+
                 Balance = balance;
-                GetBalance.SetBalance(AccountNumber, balance);
+                var output = GetBalance.SetBalance(AccountNumber, balance);
+                if (output == "Successfully Updated")
+                {
+                    var Transac = new Transaction(amount, date, type, discription);
+                    AllTransactions.Add(Transac);
 
-                var Transac = new Transaction(-amount, date, type, discription);
-                AllTransactions.Add(Transac);
-
-                return $"{discription} of #{amount} Successful";
+                    Console.WriteLine($"{discription} of #{amount} Successful");
+                }
+                Console.WriteLine($"{discription} of #{amount} Unsuccessful");
             }
         }
 
-        public string TransferTrasationOperation(long amount, string account, string discription, string type, DateTime date)
+        public void TransferTrasationOperation(long amount, string account, string discription, string type, DateTime date)
         {
             var limit = 1000000;
             if (amount <= 1)
             {
-                return "Inalid Amount: Amount must be greater than zero";
+                Console.WriteLine("Inalid Amount: Amount must be greater than zero");
             }
             if (AccountBalance - amount <= 1)
             {
-                return "Unable to compplete Transation: Your balance is low";
+                Console.WriteLine( "Unable to compplete Transation: Your balance is low");
             }
             else if (amount > limit)
             {
-                return "Unable to compplete Transation: amount must not be more than a million";
+                Console.WriteLine("Unable to compplete Transation: amount must not be more than a million");
             }
             else
             {
@@ -95,12 +102,14 @@ namespace ATM.BLL.Implementation.AtmServices
                 Balance = balance;
 
                 GetBalance.SetBalance(AccountNumber, balance);
-                GetBalance.SetRecieverBalance(account, amount);
-
-                var Transac = new Transaction(-amount, account, date, type, discription);
-                AllTransactions.Add(Transac);
-
-                return $"{discription} of #{amount} was Successful";
+                var output = GetBalance.SetRecieverBalance(account, amount);
+                if (output == "Successfully Updated")
+                {
+                    var Transac = new Transaction(-amount, account, date, type, discription);
+                    AllTransactions.Add(Transac);
+                    Console.WriteLine($"{discription} of #{amount} Successful");
+                }
+                Console.WriteLine($"{discription} of #{amount} Unsuccessful");
 
             }
         }

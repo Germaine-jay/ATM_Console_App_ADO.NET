@@ -53,12 +53,12 @@ namespace ATM.BLL.Implementation.UserServices
             return (result == 0) ? false : true;
         }
 
-        public static void SetBalance(string accountnumber, long balance)
+        public static string SetBalance(string accountnumber, long balance)
         {
             using (GetBalance AminService = new GetBalance(new DatabaseContext()))
             {
                 var Createduser = AminService.UpdateBalance(accountnumber, balance);
-                Console.WriteLine(Createduser == true ? $"Successfully Updated" : $"Not Successfully Updated");
+                return Createduser == true ? $"Successfully Updated" : $"Failed to Update";
 
             };
         }
@@ -98,7 +98,7 @@ namespace ATM.BLL.Implementation.UserServices
             return user;
         }
 
-        public static void SetRecieverBalance(string accountnumber, long amount)
+        public static string SetRecieverBalance(string accountnumber, long amount)
         {
             using (GetBalance recieverService = new GetBalance(new DatabaseContext()))
             {
@@ -106,7 +106,7 @@ namespace ATM.BLL.Implementation.UserServices
 
                 var balance = reciever.AccountBalance += amount;
                 var Reciever = recieverService.UpdateBalance(accountnumber, balance);
-                Console.WriteLine(Reciever == true ? $"Successfully Updated" : $"Not Successfully Updated");
+               return  Reciever == true ? $"Successfully Updated" : $"Failed to Update";
 
             };
         }
