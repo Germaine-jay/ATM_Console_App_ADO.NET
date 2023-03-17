@@ -4,9 +4,9 @@ using System;
 
 namespace ATM.UI.Forms.AdminForms
 {
-    internal class ResetAdminPinForm
+    public class ResetAdminPinForm
     {
-        public static void resetAdminPinForm()
+        public static void ResetadminpinForm()
         {
             Console.WriteLine("\t===> RESET ADMIN PINCODE\n");
 

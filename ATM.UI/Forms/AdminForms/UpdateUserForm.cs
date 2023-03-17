@@ -4,7 +4,7 @@ using System;
 
 namespace ATM.UI.Forms.AdminForms
 {
-    internal class UpdateUserForm
+    public class UpdateUserForm
     {
         public static void updateUserForm()
         {

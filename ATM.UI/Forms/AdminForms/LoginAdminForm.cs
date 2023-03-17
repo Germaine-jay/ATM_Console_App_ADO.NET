@@ -5,7 +5,7 @@ namespace ATM.UI.Forms.AdminForms
 {
     public class LoginAdminForm
     {
-       public void loginForm()
+       public static void loginadminForm()
         {
             Console.WriteLine("\t===> LOGIN ADMIN\n");
 
