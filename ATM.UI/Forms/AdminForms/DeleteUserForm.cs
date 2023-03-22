@@ -9,13 +9,13 @@ namespace ATM.UI.Forms.AdminForms
         {
             Console.WriteLine("\t===> DELETE CUSTOMER\n");
 
-            Console.WriteLine("\tEnter FirstName");
+            Console.WriteLine(" Enter FirstName");
             string? firstname = Console.ReadLine().ToLower();
 
-            Console.WriteLine("\tEnter LastName");
+            Console.WriteLine(" Enter LastName");
             string? lastname = Console.ReadLine().ToLower();
 
-            Console.WriteLine("\tEnter LastName");
+            Console.WriteLine(" Enter LastName");
             string? accountnumber = Console.ReadLine().ToLower();
 
             AdminView.DeleteAUser(firstname, lastname, accountnumber);

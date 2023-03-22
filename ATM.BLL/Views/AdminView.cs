@@ -14,7 +14,9 @@ namespace ATM.BLL.Views
                 var username = AdminService.Login(AdminName, Adminpin);
 
                 if (username.AdminName == null && username.AdminPin == null)
+                {
                     Console.WriteLine("Admin does not exist");
+                }
                 else Console.WriteLine("\tlogged in\t\n Welcome {0}", username.AdminName);
 
             };

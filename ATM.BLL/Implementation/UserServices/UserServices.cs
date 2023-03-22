@@ -58,7 +58,7 @@ namespace ATM.BLL.Implementation.UserServices
             using (GetBalance AminService = new GetBalance(new DatabaseContext()))
             {
                 var Createduser = AminService.UpdateBalance(accountnumber, balance);
-                return Createduser == true ? $"Successfully Updated" : $"Failed to Update";
+                return Createduser == true ? $"Successfull" : $"Failed";
 
             };
         }
@@ -106,7 +106,7 @@ namespace ATM.BLL.Implementation.UserServices
 
                 var balance = reciever.AccountBalance += amount;
                 var Reciever = recieverService.UpdateBalance(accountnumber, balance);
-               return  Reciever == true ? $"Successfully Updated" : $"Failed to Update";
+               return  Reciever == true ? $"Successfull" : $"Failed";
 
             };
         }

@@ -11,8 +11,8 @@ namespace ATM.BLL.Views
 {
     public class UserView
     {
-        public static long RecieverBalance;
-        public static string RecieverAccount;
+        /*public static long RecieverBalance;
+        public static string RecieverAccount;*/
 
         public static void LoginCustomer(string accountnumber, string pin)
         {
@@ -21,15 +21,14 @@ namespace ATM.BLL.Views
                 var user = authcustomer.LoginCustomer(accountnumber, pin);
 
                 if (user.AccountNumber == null && user.AccountPin == null)
-                    Console.WriteLine("does not exist");
-                else Console.WriteLine("logged in\n Welcome {0}", user.AccountBalance);
+                {
+                    Console.WriteLine("Customer does not exist");
+                }
 
-                //AuthCustomer cus = new AuthCustomer(new DatabaseContext());
+                Console.WriteLine("\tlogged in\n Welcome {0}", user.FirstName.ToUpper());
+
                 var account = new AtmServices(user.AccountBalance, user.AccountNumber);
                 Console.WriteLine($"Account {user.AccountNumber} with balance {user.AccountBalance}");
-                //account.Deposit(200, DateTime.Now, "first installment");
-
-                //Console.WriteLine("Balance left:- {0}", account.Balance);
 
             };
         }

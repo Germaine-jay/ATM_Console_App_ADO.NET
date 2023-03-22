@@ -10,7 +10,7 @@ namespace ATM.UI.Forms.AdminForms
         {
             Console.WriteLine("\t===> GET CUSTOMER'S DETAILS\n");
 
-            Console.WriteLine("\tEnter Customer's Accountnumber");
+            Console.WriteLine(" Enter Customer's Accountnumber");
             var accountnumber = Console.ReadLine();
 
             AdminView.GetAuser(accountnumber);

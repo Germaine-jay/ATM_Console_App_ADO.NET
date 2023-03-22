@@ -13,7 +13,7 @@ namespace ATM.UI.Forms.UserForms
             var amount = Console.ReadLine();
 
             Console.WriteLine("\tEnter disciption");
-            string discription = Console.ReadLine();
+            string description = Console.ReadLine();
 
             var limit = 20000;
             if (long.Parse(amount) <= 1 || long.TryParse(amount.ToString(), out _) == false)
@@ -31,7 +31,7 @@ namespace ATM.UI.Forms.UserForms
                 Console.WriteLine("Unable to compplete Transation: Your balance is low");
             }
 
-            transactionOptions.Recharge(int.Parse(amount), DateTime.Now, discription);
+            transactionOptions.Recharge(int.Parse(amount), DateTime.Now, description);
         }
     }
 }

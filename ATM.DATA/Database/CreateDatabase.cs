@@ -1,9 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ATM.DATA.Database
 {
@@ -15,13 +11,13 @@ namespace ATM.DATA.Database
         {
 
             bool databaseExists = false;
-            string connectionString = $"Server={servername};Database={dbname};Trusted_Connection=True;TrustServerCertificate=True;";
+            string connectionString = $"Server={servername};Database=AtmAppDatabase;Trusted_Connection=True;TrustServerCertificate=True;";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
                 connection.Open();
 
-                string checkDatabaseQuery = $"SELECT db_id('{dbname}')";
+                string checkDatabaseQuery = $"SELECT db_id('AtmAppDatabase')";
                 SqlCommand check = new SqlCommand(checkDatabaseQuery, connection);
 
                 var checks = check.ExecuteScalar();
@@ -34,12 +30,12 @@ namespace ATM.DATA.Database
                 }
                 else
                 {
-                    string createDatabaseQuery = $"CREATE DATABASE {dbname}";
+                    string createDatabaseQuery = $"CREATE DATABASE AtmAppDatabase ";
                     SqlCommand command = new SqlCommand(createDatabaseQuery, connection);
                     command.ExecuteNonQuery();
 
                     Console.WriteLine($"Successfully created '{dbname}' database");
-                    ConnectionString = (@$"Data Source={servername};Initial Catalog={dbname};Integrated Security=True; TrustServerCertificate=True;");
+                    ConnectionString = (@$"Data Source={servername};Initial Catalog=AtmAppDatabase;Integrated Security=True; TrustServerCertificate=True;");
                     connection.Close();
                 }
             }

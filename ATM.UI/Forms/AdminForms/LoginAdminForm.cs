@@ -9,10 +9,10 @@ namespace ATM.UI.Forms.AdminForms
         {
             Console.WriteLine("\t===> LOGIN ADMIN\n");
 
-            Console.WriteLine("\tEnter Name");
+            Console.WriteLine(" Enter Name");
             string AdminName = Console.ReadLine().ToLower();
 
-            Console.WriteLine("\tEnter pin");
+            Console.WriteLine(" Enter pin");
             string Adminpin = Console.ReadLine().ToLower();
 
             AdminView.LoginAdmin(AdminName, Adminpin);              

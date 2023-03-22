@@ -8,9 +8,6 @@ using ATM.BLL.Interfaces.AdminInterface;
 
 namespace ATM.BLL.Implementation.AdminServices
 {
-    internal class AdminAuthService
-    {
-    }
     public class LoginAdmin : IAuthService
     {
         private readonly DatabaseContext _dbcontext;
