@@ -5,7 +5,7 @@ namespace ATM.UI.Forms.UserForms
 {
     public class TransferForm
     {
-        public static void Rechargeform()
+        public static void Transferform()
         {
             var transactionOptions = new TransactionOptions();
 
